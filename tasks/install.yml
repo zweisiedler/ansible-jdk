@@ -2,11 +2,11 @@
 - name: create java dir
   file: dest=/usr/local/java state=directory
 - name: install jdk to client
-  unarchive: src={{ jdkgz_name }} dest=/usr/local/java
+  unarchive: src={{ jdkgz }} dest=/usr/local/java
 - name: configure jdk env
   shell: /bin/echo {{ item }} >> /etc/profile
   with_items:
-    - export JAVA_HOME=/usr/local/java/{{ jdkdir_name }}
+    - export JAVA_HOME=/usr/local/java/{{ jdkdir }}
     - export JAVA_BIN=\$JAVA_HOME/bin
     - export JRE_HOME=\$JAVA_HOME/jre
     - export JRE_BIN=\$JRE_HOME/bin
@@ -14,4 +14,4 @@
     - export CLASSPATH=\$JAVA_HOME/lib/dt.jar:\$JAVA_HOME/lib/tools.jar
 - name: source profile
   shell: source /etc/profile
-##used vars: jdkgz_name jdkdir_name
+##used vars: jdkgz jdkdir
